@@ -1,0 +1,94 @@
+
+
+NewName=[Char | _],NewCords={NewCord_x,NewCord_y},Monitor)
+when is_number(NewCord_x), is_number(NewCord_y), 32=<Char, Char=<126 ->
+
+false = containsVal(NewCords,Monitor#monitor.stations),
+false = maps:is_key(NewName,Monitor#monitor.stations),
+Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}.
+
+
+addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
+  when 0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<59,0=<Second, Second=<59, is_list(Type)->
+
+  Cords=getStationCords(Id,Monitor),
+
+  InsertedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+  false = maps:is_key(InsertedKey,Monitor#monitor.values),
+  Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}.
+
+removeValue(Id,Datetime,Type,Monitor) ->
+
+  Cords=getStationCords(Id,Monitor),
+
+  RemovedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+  maps:remove(RemovedKey,Monitor#monitor.values).
+
+getOneValue(Id,Datetime,Type,Monitor) ->
+
+  Cords=getStationCords(Id,Monitor),
+  GetKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+  maps:get(GetKey, Monitor#monitor.values).
+
+getStationMean(Id,GetType,Monitor) ->
+
+  GetCords=getStationCords(Id,Monitor),
+
+  {Sum,Num}=maps:fold(fun (#metaData{cords=Cords,type=Type},Val,{Acc,Num})
+    when Cords==GetCords, Type==GetType ->
+    {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
+  Sum / Num.
+
+getDailyMean(GetDate,GetType,Monitor) ->
+
+  {Sum,Num}=maps:fold(fun (#metaData{datetime = {Date,{_,_,_}},type=Type},Val,{Acc,Num})
+    when Type==GetType, Date==GetDate->
+    {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
+  Sum / Num.
+
+getOverLimit(Monitor) ->
+  maps:fold(fun (#metaData{type=Type},Val,Acc)
+    when (Type==[?PM10_NAME] and Val > [?PM10_NORM]) or (Type==[?PM10_NAME] and Val > [?PM10_NORM]) ->
+    Acc+1
+            end,0,Monitor#monitor.values).
+
+getStationCords(Cords={CordX,CordY},Monitor)
+  when is_number(CordX), is_number(CordY) ->
+  true=containsVal(Cords,Monitor#monitor.stations),
+  Cords;
+
+getStationCords(Name,Monitor) ->
+  maps:get(Name,Monitor#monitor.stations).
+
+containsVal(PrototypeVal,Map) ->
+  maps:size(maps:filter(fun (_,Val) when Val==PrototypeVal -> true; (_,_) -> false end,Map)) > 0.
+
+P = pollution:createMonitor().
+P1 = pollution:addStation(„Aleja Słowackiego”, {50.2345, 18.3445}, P).
+P2 = pollution:addValue({50.2345, 18.3445}, calendar:local_time(), „PM10”, 59, P1).
+P3 = pollution:addValue(„Aleja Słowackiego”, calendar:local_time(), „PM2,5”, 113, P2).
+
+
+
+%Simple truth, falsehood
+?assert( TruthValue )
+?assertNot( FalseValue )
+%Equality, inequality
+?assertEqual( Expected, Expression )
+?assertNotEqual( Unexpected, Expression )
+%Pattern matching
+?assertMatch( Pattern, Expression )
+?assertNotMatch( Pattern, Expression )
+
+?assertException( Class, Term, Expression )
+?assertNotException( Class, Term, Expression )
+%% Class = exit | error | throw
+?assertError( Term, Expression )
+?assertExit( Term, Expression )
+?assertThrow( Term, Expression )
+
+fizzbuzz_test_() ->       % use trailing _!
+[ ?_assertEqual(fizz, fizzbuzz(3)),
+?_assertEqual(buzz, fizzbuzz(5)),
+?_assertEqual(fizzbuzz, fizzbuzz(15)),
+?_assertEqual(7, fizzbuzz(7)) ].
