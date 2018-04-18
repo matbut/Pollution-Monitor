@@ -169,8 +169,130 @@ removeValue_IncorrectKey(Monitor) ->
     ?_assertError({badkey,{13.4,{14,153}}},pollution:removeValue({13.4,{14,153}},{{1997,11,01},{12,15,27}},"PM2.5",Monitor))
   ].
 
-%getStationMean_test_()
+getStationMean_test_() ->
+  {setup,
+    fun getStationMeanStart/0,
+    fun (Monitor) ->
+      [
+        getStationMean_Correct(Monitor),
+        getStationMean_IncorrectStation(Monitor)
+      ]
+    end}.
 
-%getDailyMean_test_()
+getStationMeanStart() ->
+  Monitor=pollution:createMonitor(),
+  Monitor1=pollution:addStation("Krasickiego",{13.23,17.25},Monitor),
+  Monitor2=pollution:addStation("Bulwarowa",{120,150},Monitor1),
 
-%getOverLimit_test_() -?
+  Monitor3=pollution:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",2000,Monitor2),
+  Monitor4=pollution:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",3000,Monitor3),
+
+  Monitor5=pollution:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",10,Monitor4),
+  Monitor6=pollution:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",100,Monitor5),
+  Monitor7=pollution:addValue("Bulwarowa",{{1997,11,01},{15,05,46}},"PM10",20,Monitor6),
+  Monitor8=pollution:addValue({120,150},{{1997,11,01},{2,25,11}},"PM2.5",200,Monitor7),
+
+  Monitor9=pollution:addValue("Bulwarowa",{{1997,11,02},{11,15,27}},"PM10",30,Monitor8),
+  Monitor10=pollution:addValue({120,150},{{1998,11,01},{12,15,27}},"PM2.5",300,Monitor9),
+
+  Monitor10.
+
+getStationMean_Correct(Monitor) ->
+  [
+    ?_assertEqual(2000.0,pollution:getStationMean("Krasickiego","PM10",Monitor)),
+    ?_assertEqual(2000.0,pollution:getStationMean({13.23,17.25},"PM10",Monitor)),
+    ?_assertEqual(3000.0,pollution:getStationMean("Krasickiego","PM2.5",Monitor)),
+    ?_assertEqual(3000.0,pollution:getStationMean({13.23,17.25},"PM2.5",Monitor)),
+
+    ?_assertEqual(20.0,pollution:getStationMean("Bulwarowa","PM10",Monitor)),
+    ?_assertEqual(20.0,pollution:getStationMean({120,150},"PM10",Monitor)),
+    ?_assertEqual(200.0,pollution:getStationMean("Bulwarowa","PM2.5",Monitor)),
+    ?_assertEqual(200.0,pollution:getStationMean({120,150},"PM2.5",Monitor))
+  ].
+
+getStationMean_IncorrectStation(Monitor) ->
+  [
+    ?_assertError({badkey,"Bujaka"},pollution:getStationMean("Bujaka","PM10",Monitor)),
+    ?_assertError({badmatch,false},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
+    ?_assertError(badarith,pollution:getStationMean("Bulwarowa","NO2",Monitor))
+  ].
+
+getDailyMean_test_() ->
+  {setup,
+    fun getDailyMeanStart/0,
+    fun (Monitor) ->
+      [
+        getDailyMean_Correct(Monitor),
+        getDailyMean_IncorrectStation(Monitor)
+      ]
+    end}.
+
+getDailyMeanStart() ->
+  Monitor=pollution:createMonitor(),
+  Monitor1=pollution:addStation("Krasickiego",{13.23,17.25},Monitor),
+  Monitor2=pollution:addStation("Bulwarowa",{120,150},Monitor1),
+
+  Monitor3=pollution:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",30,Monitor2),
+  Monitor4=pollution:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",300,Monitor3),
+
+  Monitor5=pollution:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",10,Monitor4),
+  Monitor6=pollution:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",100,Monitor5),
+  Monitor7=pollution:addValue("Bulwarowa",{{1997,11,01},{15,05,46}},"PM10",20,Monitor6),
+  Monitor8=pollution:addValue({120,150},{{1997,11,01},{2,25,11}},"PM2.5",200,Monitor7),
+
+  Monitor9=pollution:addValue("Bulwarowa",{{1997,11,02},{11,15,27}},"PM10",6000,Monitor8),
+  Monitor10=pollution:addValue({120,150},{{1998,11,01},{12,15,27}},"PM2.5",3000,Monitor9),
+
+  Monitor10.
+
+getDailyMean_Correct(Monitor) ->
+  [
+    ?_assertEqual(20.0,pollution:getDailyMean({1997,11,01},"PM10",Monitor)),
+    ?_assertEqual(200.0,pollution:getDailyMean({1997,11,01},"PM2.5",Monitor)),
+    ?_assertEqual(6000.0,pollution:getDailyMean({1997,11,02},"PM10",Monitor)),
+    ?_assertEqual(3000.0,pollution:getDailyMean({1998,11,01},"PM2.5",Monitor))
+  ].
+
+getDailyMean_IncorrectStation(Monitor) ->
+  [
+    ?_assertError({badkey,"Bujaka"},pollution:getStationMean("Bujaka","PM10",Monitor)),
+    ?_assertError({badmatch,false},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
+    ?_assertError(badarith,pollution:getStationMean("Bulwarowa","NO2",Monitor))
+  ].
+
+getOverLimit_test_() ->
+  {setup,
+    fun getOverLimitStart/0,
+    fun (Monitor) ->
+      [
+        getOverLimit_Correct(Monitor)
+      ]
+    end}.
+
+getOverLimitStart()->
+  Monitor=pollution:createMonitor(),
+  Monitor1=pollution:addStation("Krasickiego",{13.23,17.25},Monitor),
+  Monitor2=pollution:addStation("Bulwarowa",{120,150},Monitor1),
+
+  Monitor3=pollution:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",51,Monitor2),
+  Monitor4=pollution:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",31,Monitor3),
+
+  Monitor5=pollution:addValue("Krasickiego",{{1997,11,02},{11,15,27}},"PM10",50,Monitor4),
+  Monitor6=pollution:addValue({13.23,17.25},{{1997,11,02},{11,15,27}},"PM2.5",30,Monitor5),
+
+  Monitor7=pollution:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",50.3,Monitor6),
+  Monitor8=pollution:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",30.2,Monitor7),
+  Monitor9=pollution:addValue("Bulwarowa",{{1997,11,01},{15,05,46}},"PM10",49.7,Monitor8),
+  Monitor10=pollution:addValue({120,150},{{1997,11,01},{2,25,11}},"PM2.5",28.4,Monitor9),
+
+  Monitor11=pollution:addValue("Bulwarowa",{{1997,11,02},{11,15,27}},"PM10",600,Monitor10),
+  Monitor12=pollution:addValue({120,150},{{1998,11,01},{12,15,27}},"PM2.5",300,Monitor11),
+
+  Monitor12.
+
+getOverLimit_Correct(Monitor) ->
+  [
+    ?_assertEqual(6,pollution:getOverLimit(Monitor)),
+    ?_assertEqual(0,pollution:getOverLimit(pollution:createMonitor()))
+  ].
+

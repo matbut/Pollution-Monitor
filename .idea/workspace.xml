@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="df7619c4-23ed-4ba1-92df-5cd9383f6685" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/pollution.erl" afterPath="$PROJECT_DIR$/src/main/pollution.erl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/pollutionTests.erl" afterPath="$PROJECT_DIR$/src/test/pollutionTests.erl" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,8 +19,8 @@
       <file leaf-file-name="pollution.erl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="101" selection-end-column="26" />
+            <state relative-caret-position="157">
+              <caret line="100" column="12" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -28,8 +29,8 @@
       <file leaf-file-name="pollutionTests.erl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="53" column="4" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+            <state relative-caret-position="433">
+              <caret line="290" column="11" lean-forward="false" selection-start-line="290" selection-start-column="11" selection-end-line="290" selection-end-column="11" />
               <folding>
                 <element signature="n#addStation_test_#0" expanded="false" />
                 <element signature="n#addStationStart#0" expanded="false" />
@@ -37,7 +38,6 @@
                 <element signature="n#addStation_SameName#0" expanded="false" />
                 <element signature="n#addStations_IncorrectName#0" expanded="false" />
                 <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-                <element signature="n#addGetValue_test_#0" expanded="false" />
                 <element signature="n#addGetValueStart#0" expanded="false" />
                 <element signature="n#addGetValues_Correct#0" expanded="false" />
                 <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -85,8 +85,8 @@
         <option value="$PROJECT_DIR$/src/main/pollutionTests.erl" />
         <option value="$PROJECT_DIR$/src/test/tests" />
         <option value="$PROJECT_DIR$/src/main/qsort.erl" />
-        <option value="$PROJECT_DIR$/src/main/pollution.erl" />
         <option value="$PROJECT_DIR$/src/test/pollutionTests.erl" />
+        <option value="$PROJECT_DIR$/src/main/pollution.erl" />
       </list>
     </option>
   </component>
@@ -133,20 +133,14 @@
             </path>
             <path>
               <item name="Pollution-Monitor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Pollution-Monitor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Pollution-Monitor" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,38 +410,45 @@
       <option name="project" value="LOCAL" />
       <updated>1524066135740</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New tests added">
+      <created>1524066157804</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524066157804</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestPollution - 2018.04.18 at 17h 25m 59s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 38m 47s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 27m 57s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 39m 35s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 29m 40s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 39m 56s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 31m 08s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 40m 09s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 35m 44s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 42m 11s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 36m 07s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 42m 30s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 36m 20s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 43m 12s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 36m 39s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 43m 18s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 36m 49s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 43m 58s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.04.18 at 17h 37m 27s.xml">
+    <history-entry file="TestPollution - 2018.04.19 at 00h 44m 17s.xml">
       <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
   </component>
@@ -472,9 +473,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40286976" sideWeight="0.5935557" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289183" sideWeight="0.4064443" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289183" sideWeight="0.4064443" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.49802148" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13796909" sideWeight="0.49802148" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1724138" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -498,13 +499,53 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pollution module added." />
     <MESSAGE value="Remove value fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove value fixed" />
+    <MESSAGE value="New tests added" />
+    <option name="LAST_COMMIT_MESSAGE" value="New tests added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="53" column="4" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+          <folding>
+            <element signature="n#addStation_test_#0" expanded="false" />
+            <element signature="n#addStationStart#0" expanded="false" />
+            <element signature="n#addStation_SameCords#0" expanded="false" />
+            <element signature="n#addStation_SameName#0" expanded="false" />
+            <element signature="n#addStations_IncorrectName#0" expanded="false" />
+            <element signature="n#addStations_IncorrectCords#0" expanded="false" />
+            <element signature="n#addGetValueStart#0" expanded="false" />
+            <element signature="n#addGetValues_Correct#0" expanded="false" />
+            <element signature="n#addValues_SameKey#0" expanded="false" />
+            <element signature="n#addValues_IncorrectStation#0" expanded="false" />
+            <element signature="n#removeValue_test_#0" expanded="false" />
+            <element signature="n#removeValue_Correct#0" expanded="false" />
+            <element signature="n#removeValue_Double#0" expanded="false" />
+            <element signature="n#removeValue_IncorrectKey#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/qsort.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1452">
@@ -524,7 +565,6 @@
             <element signature="n#addStation_SameName#0" expanded="false" />
             <element signature="n#addStations_IncorrectName#0" expanded="false" />
             <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-            <element signature="n#addGetValue_test_#0" expanded="false" />
             <element signature="n#addGetValueStart#0" expanded="false" />
             <element signature="n#addGetValues_Correct#0" expanded="false" />
             <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -564,7 +604,6 @@
             <element signature="n#addStation_SameName#0" expanded="false" />
             <element signature="n#addStations_IncorrectName#0" expanded="false" />
             <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-            <element signature="n#addGetValue_test_#0" expanded="false" />
             <element signature="n#addGetValueStart#0" expanded="false" />
             <element signature="n#addGetValues_Correct#0" expanded="false" />
             <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -604,7 +643,6 @@
             <element signature="n#addStation_SameName#0" expanded="false" />
             <element signature="n#addStations_IncorrectName#0" expanded="false" />
             <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-            <element signature="n#addGetValue_test_#0" expanded="false" />
             <element signature="n#addGetValueStart#0" expanded="false" />
             <element signature="n#addGetValues_Correct#0" expanded="false" />
             <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -652,7 +690,6 @@
             <element signature="n#addStation_SameName#0" expanded="false" />
             <element signature="n#addStations_IncorrectName#0" expanded="false" />
             <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-            <element signature="n#addGetValue_test_#0" expanded="false" />
             <element signature="n#addGetValueStart#0" expanded="false" />
             <element signature="n#addGetValues_Correct#0" expanded="false" />
             <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -729,8 +766,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="53" column="4" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+        <state relative-caret-position="433">
+          <caret line="290" column="11" lean-forward="false" selection-start-line="290" selection-start-column="11" selection-end-line="290" selection-end-column="11" />
           <folding>
             <element signature="n#addStation_test_#0" expanded="false" />
             <element signature="n#addStationStart#0" expanded="false" />
@@ -738,7 +775,6 @@
             <element signature="n#addStation_SameName#0" expanded="false" />
             <element signature="n#addStations_IncorrectName#0" expanded="false" />
             <element signature="n#addStations_IncorrectCords#0" expanded="false" />
-            <element signature="n#addGetValue_test_#0" expanded="false" />
             <element signature="n#addGetValueStart#0" expanded="false" />
             <element signature="n#addGetValues_Correct#0" expanded="false" />
             <element signature="n#addValues_SameKey#0" expanded="false" />
@@ -753,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="101" selection-end-column="26" />
+        <state relative-caret-position="157">
+          <caret line="100" column="12" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="12" />
           <folding />
         </state>
       </provider>

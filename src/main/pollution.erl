@@ -99,10 +99,12 @@ getDailyMean(GetDate,GetType,Monitor) ->
   Sum / Num.
 
 getOverLimit(Monitor) ->
-  maps:fold(fun (#metaData{type=Type},Val,Acc)
-    when (Type==?PM10_NAME and (Val > ?PM10_NORM)) or (Type==?PM10_NAME and (Val > ?PM10_NORM)) ->
-      Acc+1
-    end,0,Monitor#monitor.values).
+  maps:fold(fun
+    (#metaData{type=Type},Val,Acc)
+      when ((Type==?PM10_NAME) and (Val > ?PM10_NORM)) or ((Type==?PM25_NAME) and (Val > ?PM25_NORM)) ->
+        Acc+1;
+    (_,_,Acc) -> Acc
+  end,0,Monitor#monitor.values).
 
 getStationCords(Cords={CordX,CordY},Monitor)
   when is_number(CordX), is_number(CordY) ->
