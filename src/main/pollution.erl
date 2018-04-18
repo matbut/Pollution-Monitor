@@ -74,7 +74,7 @@ removeValue(Id,Datetime,Type,Monitor) ->
   Cords=getStationCords(Id,Monitor),
 
   RemovedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
-  maps:remove(RemovedKey,Monitor#monitor.values).
+  Monitor#monitor{values = maps:remove(RemovedKey,Monitor#monitor.values)}.
 
 getOneValue(Id,Datetime,Type,Monitor) ->
 
