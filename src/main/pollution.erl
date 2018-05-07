@@ -36,9 +36,6 @@
 -define(PM10_NORM,50).
 -define(PM25_NORM,30).
 
--define(ADD_STATION_ERROR_MES,"Monitor contains station with same name or same cords").
--define(ADD_VALUE_ERROR_MES,"Monitor contains value with same station id, date and type").
-
 createMonitor() ->
   {ok,#monitor{}}.
 
@@ -48,48 +45,61 @@ addStation(NewName=[Char | _],NewCords={NewCord_x,NewCord_y},Monitor)
   case containsVal(NewCords,Monitor#monitor.stations) or maps:is_key(NewName,Monitor#monitor.stations) of
     false -> {ok,Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}};
     %true ->  erlang:error(?ADD_STATION_ERROR_MES)
-    true ->  {error,?ADD_STATION_ERROR_MES}
-  end.
+    true ->  {error,"Monitor contains station with same name or same cords"}
+  end;
   %false = containsVal(NewCords,Monitor#monitor.stations),
   %false = maps:is_key(NewName,Monitor#monitor.stations),
   %Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}.
 
+addStation(_,_,_) -> {error,"Illegal name or cords format"}.
+
+
 addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
-  when 0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<59,0=<Second, Second=<59, is_list(Type)->
+  when 0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<59,0=<Second, Second=<59,
+  is_list(Type) , is_number(Val)->
 
-  Cords=getStationCords(Id,Monitor),
-  InsertedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+  case getStationCords(Id,Monitor) of
+    {ok,Cords} ->
+      InsertedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
 
-  case maps:is_key(InsertedKey,Monitor#monitor.values) of
-    false -> {ok,Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}};
-    %true -> erlang:error(?ADD_VALUE_ERROR_MES)
-    true -> {error,?ADD_VALUE_ERROR_MES}
-  end.
+      case maps:is_key(InsertedKey,Monitor#monitor.values) of
+        false -> {ok,Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}};
+        %true -> erlang:error(?ADD_VALUE_ERROR_MES)
+        true -> {error,"Monitor contains value with same station id, date and type"}
+      end;
+    Error -> Error
+  end;
   %InsertedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
   %false = maps:is_key(InsertedKey,Monitor#monitor.values),
   %Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}.
 
+addValue(_,_,_,_,_) -> {error,"Illegal datetime or type or value format"}.
+
 removeValue(Id,Datetime,Type,Monitor) ->
-
-  Cords=getStationCords(Id,Monitor),
-
-  RemovedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
-  {ok,Monitor#monitor{values = maps:remove(RemovedKey,Monitor#monitor.values)}}.
+  case getStationCords(Id,Monitor) of
+    {ok,Cords} ->
+      RemovedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+      {ok,Monitor#monitor{values = maps:remove(RemovedKey,Monitor#monitor.values)}};
+    Error -> Error
+  end.
 
 getOneValue(Id,Datetime,Type,Monitor) ->
-
-  Cords=getStationCords(Id,Monitor),
-  GetKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
-  {ok,maps:get(GetKey, Monitor#monitor.values)}.
+  case getStationCords(Id,Monitor) of
+    {ok,Cords} ->
+      GetKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
+      {ok,maps:get(GetKey, Monitor#monitor.values)};
+    Error -> Error
+  end.
 
 getStationMean(Id,GetType,Monitor) ->
-
-  GetCords=getStationCords(Id,Monitor),
-
-  {Sum,Num}=maps:fold(fun (#metaData{cords=Cords,type=Type},Val,{Acc,Num})
-    when Cords==GetCords, Type==GetType ->
-    {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
-  {ok,Sum / Num}.
+  case getStationCords(Id,Monitor) of
+    {ok,GetCords} ->
+      {Sum,Num}=maps:fold(fun (#metaData{cords=Cords,type=Type},Val,{Acc,Num})
+        when Cords==GetCords, Type==GetType ->
+        {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
+      {ok,Sum / Num};
+    Error -> Error
+  end.
 
 getDailyMean(GetDate,GetType,Monitor) ->
 
@@ -112,11 +122,18 @@ getOverLimit(GetDate,GetHour,Monitor) ->
 
 getStationCords(Cords={CordX,CordY},Monitor)
   when is_number(CordX), is_number(CordY) ->
-  true=containsVal(Cords,Monitor#monitor.stations),
-  Cords;
+  case containsVal(Cords,Monitor#monitor.stations) of
+    true -> {ok,Cords};
+    false -> {error,"Unknown station cords"}
+  end;
 
 getStationCords(Name,Monitor) ->
-  maps:get(Name,Monitor#monitor.stations).
+  case maps:is_key(Name,Monitor#monitor.stations) of
+    true -> {ok,maps:get(Name,Monitor#monitor.stations)};
+    false -> {error,"Unknown station name"}
+  end.
+  %maps:get(Name,Monitor#monitor.stations,{error,"Unknown station name"}).
+
 
 containsVal(PrototypeVal,Map) ->
   maps:size(maps:filter(fun (_,Val) when Val==PrototypeVal -> true; (_,_) -> false end,Map)) > 0.

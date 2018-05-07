@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7619c4-23ed-4ba1-92df-5cd9383f6685" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/pingpong.erl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/pollution_server.erl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/pollution_tests.erl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/pollutionTests.erl" afterPath="$PROJECT_DIR$/src/test/pollution_server_tests.erl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/pollution.erl" afterPath="$PROJECT_DIR$/src/main/pollution.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/qsort.erl" afterPath="$PROJECT_DIR$/src/main/qsort.erl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/pollutionTests.erl" afterPath="$PROJECT_DIR$/src/test/pollutionTests.erl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/tests" afterPath="$PROJECT_DIR$/src/test/tests" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,28 +22,28 @@
       <file leaf-file-name="pollution.erl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="322">
+              <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pingpong.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/pingpong.erl">
+      <file leaf-file-name="pollution_server.erl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/pollution_server.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+            <state relative-caret-position="148">
+              <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pollutionTests.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+      <file leaf-file-name="pollution_tests.erl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="298" column="73" lean-forward="false" selection-start-line="298" selection-start-column="73" selection-end-line="298" selection-end-column="73" />
+            <state relative-caret-position="222">
+              <caret line="254" column="27" lean-forward="false" selection-start-line="254" selection-start-column="27" selection-end-line="254" selection-end-column="27" />
               <folding>
                 <element signature="n#addStation_test_#0" expanded="false" />
               </folding>
@@ -50,11 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qsort.erl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/qsort.erl">
+      <file leaf-file-name="pollution_server_tests.erl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/pollution_server_tests.erl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="3608">
+              <caret line="257" column="48" lean-forward="true" selection-start-line="257" selection-start-column="48" selection-end-line="257" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/tests">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,6 +80,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>is_k</find>
+      <find>getStationCords</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -82,12 +99,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/pollution.erl" />
         <option value="$PROJECT_DIR$/src/main/pollutionTests.erl" />
-        <option value="$PROJECT_DIR$/src/test/tests" />
         <option value="$PROJECT_DIR$/src/main/pingpong.erl" />
-        <option value="$PROJECT_DIR$/src/main/pollution_server.erl" />
         <option value="$PROJECT_DIR$/src/main/qsort.erl" />
-        <option value="$PROJECT_DIR$/src/main/pollution.erl" />
         <option value="$PROJECT_DIR$/src/test/pollutionTests.erl" />
+        <option value="$PROJECT_DIR$/src/test/tests" />
+        <option value="$PROJECT_DIR$/src/main/pollution_server.erl" />
+        <option value="$PROJECT_DIR$/src/test/pollution_server_tests.erl" />
+        <option value="$PROJECT_DIR$/src/main/pollution.erl" />
+        <option value="$PROJECT_DIR$/src/test/pollution_tests.erl" />
       </list>
     </option>
   </component>
@@ -158,6 +177,9 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src" />
@@ -176,7 +198,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Erlang Eunit.TestPollution">
+  <component name="RunManager" selected="Erlang Eunit.pollution_tests">
     <configuration name="TestPollution" type="ErlangUnitRunConfigurationType" factoryName="Erlang Eunit" show_console_on_std_err="false" show_console_on_std_out="false">
       <option name="debugOptions">
         <ErlangDebugOptions>
@@ -369,18 +391,68 @@
         <set />
       </option>
     </configuration>
-    <list size="5">
+    <configuration name="pollution_server_tests" type="ErlangUnitRunConfigurationType" factoryName="Erlang Eunit" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="workDirectory" />
+      <module name="Pollution-Monitor">
+        <option name="moduleName" value="Pollution-Monitor" />
+      </module>
+      <option name="functionNames">
+        <set />
+      </option>
+      <option name="kind" value="MODULE" />
+      <option name="moduleNames">
+        <set>
+          <option value="pollution_server_tests" />
+        </set>
+      </option>
+    </configuration>
+    <configuration name="pollution_tests" type="ErlangUnitRunConfigurationType" factoryName="Erlang Eunit" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="debugOptions">
+        <ErlangDebugOptions>
+          <option name="autoUpdateModulesNotToInterpret" value="true" />
+          <option name="modulesNotToInterpret">
+            <set />
+          </option>
+        </ErlangDebugOptions>
+      </option>
+      <option name="workDirectory" />
+      <module name="Pollution-Monitor">
+        <option name="moduleName" value="Pollution-Monitor" />
+      </module>
+      <option name="functionNames">
+        <set />
+      </option>
+      <option name="kind" value="MODULE" />
+      <option name="moduleNames">
+        <set>
+          <option value="pollution_tests" />
+        </set>
+      </option>
+    </configuration>
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Erlang Console.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Erlang Eunit.TestPollution" />
       <item index="2" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth_test" />
       <item index="3" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth2_test" />
       <item index="4" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests" />
+      <item index="5" class="java.lang.String" itemvalue="Erlang Eunit.pollution_server_tests" />
+      <item index="6" class="java.lang.String" itemvalue="Erlang Eunit.pollution_tests" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests" />
-        <item index="1" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth2_test" />
-        <item index="2" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth_test" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Erlang Eunit.pollution_tests" />
+        <item index="1" class="java.lang.String" itemvalue="Erlang Eunit.pollution_server_tests" />
+        <item index="2" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests" />
+        <item index="3" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth2_test" />
+        <item index="4" class="java.lang.String" itemvalue="Erlang Eunit.pollutionTests:truth_test" />
       </list>
     </recent_temporary>
   </component>
@@ -435,35 +507,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestPollution - 2018.05.07 at 09h 35m 26s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 13h 46m 04s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 35m 42s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 13h 47m 15s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 36m 34s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 13h 47m 48s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 36m 47s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 13h 49m 06s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 38m 42s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 13h 49m 59s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 39m 32s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_server_tests - 2018.05.07 at 14h 19m 21s.xml">
+      <configuration name="pollution_server_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 41m 03s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_tests - 2018.05.07 at 13h 50m 13s.xml">
+      <configuration name="pollution_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 41m 23s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_tests - 2018.05.07 at 14h 19m 28s.xml">
+      <configuration name="pollution_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 52m 38s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_tests - 2018.05.07 at 14h 20m 37s.xml">
+      <configuration name="pollution_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="TestPollution - 2018.05.07 at 09h 53m 05s.xml">
-      <configuration name="TestPollution" configurationId="ErlangUnitRunConfigurationType" />
+    <history-entry file="pollution_tests - 2018.05.07 at 14h 21m 16s.xml">
+      <configuration name="pollution_tests" configurationId="ErlangUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -477,6 +549,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="89" y="-5" width="1831" height="1085" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.49802148" order="6" side_tool="false" content_ui="tabs" />
@@ -486,12 +559,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40286976" sideWeight="0.5935557" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289183" sideWeight="0.4064443" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40286976" sideWeight="0.4064443" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13796909" sideWeight="0.49802148" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17524025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20463538" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24985868" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -545,7 +618,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6380">
           <caret line="290" column="11" lean-forward="false" selection-start-line="290" selection-start-column="11" selection-end-line="290" selection-end-column="11" />
@@ -571,7 +644,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6380">
           <caret line="290" column="11" lean-forward="false" selection-start-line="290" selection-start-column="11" selection-end-line="290" selection-end-column="11" />
@@ -597,7 +670,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1166">
           <caret line="53" column="4" lean-forward="true" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
@@ -623,7 +696,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
@@ -648,7 +721,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="20" />
@@ -674,7 +747,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
@@ -707,7 +780,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
@@ -762,22 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/tests">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2046">
-          <caret line="93" column="32" lean-forward="false" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/pollution_server.erl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/qsort.erl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
@@ -794,10 +851,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/pollutionTests.erl">
+    <entry file="file://$PROJECT_DIR$/src/test/tests">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="298" column="73" lean-forward="false" selection-start-line="298" selection-start-column="73" selection-end-line="298" selection-end-column="73" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_server_tests.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3608">
+          <caret line="257" column="48" lean-forward="true" selection-start-line="257" selection-start-column="48" selection-end-line="257" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/pollution_server.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="57" column="11" lean-forward="false" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/pollution_tests.erl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="254" column="27" lean-forward="false" selection-start-line="254" selection-start-column="27" selection-end-line="254" selection-end-column="27" />
           <folding>
             <element signature="n#addStation_test_#0" expanded="false" />
           </folding>
@@ -806,8 +887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/pollution.erl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state relative-caret-position="322">
+          <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
           <folding />
         </state>
       </provider>

@@ -6,14 +6,10 @@
 %%% @end
 %%% Created : 15. Apr 2018 00:00
 %%%-------------------------------------------------------------------
--module(pollutionTests).
+-module(pollution_tests).
 -author("mateusz").
 -compile([export_all, debug_info]).
 -include_lib("eunit/include/eunit.hrl").
-
--define(ADD_STATION_ERROR_MES,"Monitor contains station with same name or same cords").
--define(ADD_VALUE_ERROR_MES,"Monitor contains value with same station id, date and type").
-
 
 addStation_test_() ->
   {setup,
@@ -35,30 +31,30 @@ addStationStart() ->
 addStation_SameCords(Monitor) ->
   %[?_assertError(ADD_STATION_ERROR_MES,pollution:addStation("Slowackiego",{13.23,17.25},Monitor))].
   [
-    ?_assertEqual({error,?ADD_STATION_ERROR_MES},pollution:addStation("Slowackiego",{13.23,17.25},Monitor)),
-    ?_assertEqual({error,?ADD_STATION_ERROR_MES},pollution:addStation("Slowackiego",{120,150},Monitor))
+    ?_assertMatch({error,_},pollution:addStation("Slowackiego",{13.23,17.25},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation("Slowackiego",{120,150},Monitor))
   ].
 
 addStation_SameName(Monitor) ->
   %[?_assertError(ADD_STATION_ERROR_MES,pollution:addStation("Krasickiego",{21.16,17.25},Monitor))].
   [
-    ?_assertEqual({error,?ADD_STATION_ERROR_MES},pollution:addStation("Krasickiego",{21.16,17.25},Monitor)),
-    ?_assertEqual({error,?ADD_STATION_ERROR_MES},pollution:addStation("Bulwarowa",{17,150},Monitor))
+    ?_assertMatch({error,_},pollution:addStation("Krasickiego",{21.16,17.25},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation("Bulwarowa",{17,150},Monitor))
   ].
 
 addStations_IncorrectName(Monitor) ->
   [
-    ?_assertError(function_clause,pollution:addStation(bujaka,{133.5,31.4},Monitor)),
-    ?_assertError(function_clause,pollution:addStation([15,65,66],{133.5,31.4},Monitor)),
-    ?_assertError(function_clause,pollution:addStation(["Stacja","Bujaka"],{133.5,31.4},Monitor)),
-    ?_assertError(function_clause,pollution:addStation({"Stacja","Bujaka"},{133.5,31.4},Monitor))
+    ?_assertMatch({error,_},pollution:addStation(bujaka,{133.5,31.4},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation([15,65,66],{133.5,31.4},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation(["Stacja","Bujaka"],{133.5,31.4},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation({"Stacja","Bujaka"},{133.5,31.4},Monitor))
   ].
 
 addStations_IncorrectCords(Monitor) ->
   [
-    ?_assertError(function_clause,pollution:addStation("Bujaka",{five,21},Monitor)),
-    ?_assertError(function_clause,pollution:addStation("Bujaka",{13.4,[14,153]},Monitor)),
-    ?_assertError(function_clause,pollution:addStation("Bujaka",{13.4,{14,153}},Monitor))
+    ?_assertMatch({error,_},pollution:addStation("Bujaka",{five,21},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation("Bujaka",{13.4,[14,153]},Monitor)),
+    ?_assertMatch({error,_},pollution:addStation("Bujaka",{13.4,{14,153}},Monitor))
   ].
 
 addGetValue_test_() ->
@@ -99,23 +95,23 @@ addGetValues_Correct(Monitor) ->
 
 addValues_SameKey(Monitor) ->
   [
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",195,Monitor)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",7,Monitor)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",17,Monitor)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor))
+    ?_assertMatch({error,_},pollution:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",195,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",7,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",17,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor))
   ].
 
 addValues_IncorrectStation(Monitor) ->
   [
-    ?_assertError(_,pollution:addValue("Bujaka",{{1997,11,01},{11,15,27}},"PM10",195,Monitor)),
-    ?_assertError({badkey,bujaka},pollution:addValue(bujaka,{{1997,11,01},{11,15,27}},"PM2.5",7,Monitor)),
-    ?_assertError({badkey,["Stacja","Bujaka"]},pollution:addValue(["Stacja","Bujaka"],{{1997,11,01},{11,15,27}},"PM10",17,Monitor)),
-    ?_assertError({badkey,{"Stacja","Bujaka"}},pollution:addValue({"Stacja","Bujaka"},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue("Bujaka",{{1997,11,01},{11,15,27}},"PM10",195,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue(bujaka,{{1997,11,01},{11,15,27}},"PM2.5",7,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue(["Stacja","Bujaka"],{{1997,11,01},{11,15,27}},"PM10",17,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({"Stacja","Bujaka"},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
 
-    ?_assertError(_,pollution:addValue({5,21},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
-    ?_assertError({badkey,{five,21}},pollution:addValue({five,21},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
-    ?_assertError({badkey,{13.4,[14,153]}},pollution:addValue({13.4,[14,153]},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
-    ?_assertError({badkey,{13.4,{14,153}}},pollution:addValue({13.4,{14,153}},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor))
+    ?_assertMatch({error,_},pollution:addValue({5,21},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({five,21},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({13.4,[14,153]},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor)),
+    ?_assertMatch({error,_},pollution:addValue({13.4,{14,153}},{{1997,11,01},{12,15,27}},"PM2.5",215,Monitor))
   ].
 
 removeValue_test_() ->
@@ -159,15 +155,15 @@ removeValue_Double(Monitor) ->
 
 removeValue_IncorrectKey(Monitor) ->
   [
-    ?_assertError({badkey,"Bujaka"},pollution:removeValue("Bujaka",{{1997,11,01},{11,15,27}},"PM10",Monitor)),
-    ?_assertError({badkey,bujaka},pollution:removeValue(bujaka,{{1997,11,01},{11,15,27}},"PM2.5",Monitor)),
-    ?_assertError({badkey,["Stacja","Bujaka"]},pollution:removeValue(["Stacja","Bujaka"],{{1997,11,01},{11,15,27}},"PM10",Monitor)),
-    ?_assertError({badkey,{"Stacja","Bujaka"}},pollution:removeValue({"Stacja","Bujaka"},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue("Bujaka",{{1997,11,01},{11,15,27}},"PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue(bujaka,{{1997,11,01},{11,15,27}},"PM2.5",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue(["Stacja","Bujaka"],{{1997,11,01},{11,15,27}},"PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue({"Stacja","Bujaka"},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
 
-    ?_assertError({badmatch,false},pollution:removeValue({5,21},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
-    ?_assertError({badkey,{five,21}},pollution:removeValue({five,21},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
-    ?_assertError({badkey,{13.4,[14,153]}},pollution:removeValue({13.4,[14,153]},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
-    ?_assertError({badkey,{13.4,{14,153}}},pollution:removeValue({13.4,{14,153}},{{1997,11,01},{12,15,27}},"PM2.5",Monitor))
+    ?_assertMatch({error,_},pollution:removeValue({5,21},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue({five,21},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue({13.4,[14,153]},{{1997,11,01},{12,15,27}},"PM2.5",Monitor)),
+    ?_assertMatch({error,_},pollution:removeValue({13.4,{14,153}},{{1997,11,01},{12,15,27}},"PM2.5",Monitor))
   ].
 
 getStationMean_test_() ->
@@ -213,8 +209,8 @@ getStationMean_Correct(Monitor) ->
 
 getStationMean_IncorrectStation(Monitor) ->
   [
-    ?_assertError({badkey,"Bujaka"},pollution:getStationMean("Bujaka","PM10",Monitor)),
-    ?_assertError({badmatch,false},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:getStationMean("Bujaka","PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
     ?_assertError(badarith,pollution:getStationMean("Bulwarowa","NO2",Monitor))
   ].
 
@@ -256,8 +252,8 @@ getDailyMean_Correct(Monitor) ->
 
 getDailyMean_IncorrectStation(Monitor) ->
   [
-    ?_assertError({badkey,"Bujaka"},pollution:getStationMean("Bujaka","PM10",Monitor)),
-    ?_assertError({badmatch,false},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:getStationMean("Bujaka","PM10",Monitor)),
+    ?_assertMatch({error,_},pollution:getStationMean({12.3,43.4},"PM10",Monitor)),
     ?_assertError(badarith,pollution:getStationMean("Bulwarowa","NO2",Monitor))
   ].
 
