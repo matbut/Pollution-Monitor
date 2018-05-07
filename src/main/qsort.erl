@@ -20,8 +20,7 @@ grtEqThan(List, Arg) ->
 
 qs([Pivot|Tail]) ->
   qs( lessThan(Tail,Pivot) ) ++ [Pivot] ++ qs( grtEqThan(Tail,Pivot));
-qs(Element) -> Element;
-qs([]) -> [].
+qs(Element) -> Element.
 
 randomElems(N,Min,Max) ->
   [rand:uniform(Max-Min)+Min || X <- lists:seq(1,N)].

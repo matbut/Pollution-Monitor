@@ -10,7 +10,7 @@
 -author("mateusz").
 
 %% API
--export([createMonitor/0,addStation/3,addValue/5,removeValue/4,getOneValue/4,getStationMean/3,getDailyMean/3,getOverLimit/1]).
+-export([createMonitor/0,addStation/3,addValue/5,removeValue/4,getOneValue/4,getStationMean/3,getDailyMean/3,getOverLimit/3]).
 
 -import(calendar,[local_time/0]).
 
@@ -40,13 +40,13 @@
 -define(ADD_VALUE_ERROR_MES,"Monitor contains value with same station id, date and type").
 
 createMonitor() ->
-  #monitor{}.
+  {ok,#monitor{}}.
 
 addStation(NewName=[Char | _],NewCords={NewCord_x,NewCord_y},Monitor)
   when is_number(NewCord_x), is_number(NewCord_y), 32=<Char, Char=<126 ->
 
   case containsVal(NewCords,Monitor#monitor.stations) or maps:is_key(NewName,Monitor#monitor.stations) of
-    false -> Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}};
+    false -> {ok,Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}};
     %true ->  erlang:error(?ADD_STATION_ERROR_MES)
     true ->  {error,?ADD_STATION_ERROR_MES}
   end.
@@ -61,7 +61,7 @@ addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
   InsertedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
 
   case maps:is_key(InsertedKey,Monitor#monitor.values) of
-    false -> Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}};
+    false -> {ok,Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}};
     %true -> erlang:error(?ADD_VALUE_ERROR_MES)
     true -> {error,?ADD_VALUE_ERROR_MES}
   end.
@@ -74,13 +74,13 @@ removeValue(Id,Datetime,Type,Monitor) ->
   Cords=getStationCords(Id,Monitor),
 
   RemovedKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
-  Monitor#monitor{values = maps:remove(RemovedKey,Monitor#monitor.values)}.
+  {ok,Monitor#monitor{values = maps:remove(RemovedKey,Monitor#monitor.values)}}.
 
 getOneValue(Id,Datetime,Type,Monitor) ->
 
   Cords=getStationCords(Id,Monitor),
   GetKey = #metaData{cords=Cords,datetime=Datetime,type=Type},
-  maps:get(GetKey, Monitor#monitor.values).
+  {ok,maps:get(GetKey, Monitor#monitor.values)}.
 
 getStationMean(Id,GetType,Monitor) ->
 
@@ -89,22 +89,26 @@ getStationMean(Id,GetType,Monitor) ->
   {Sum,Num}=maps:fold(fun (#metaData{cords=Cords,type=Type},Val,{Acc,Num})
     when Cords==GetCords, Type==GetType ->
     {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
-  Sum / Num.
+  {ok,Sum / Num}.
 
 getDailyMean(GetDate,GetType,Monitor) ->
 
-  {Sum,Num}=maps:fold(fun (#metaData{datetime = {Date,{_,_,_}},type=Type},Val,{Acc,Num})
-    when Type==GetType, Date==GetDate->
-    {Val+Acc,Num+1}; (_,_,{Acc,Num}) -> {Acc,Num} end,{0,0},Monitor#monitor.values),
-  Sum / Num.
+  {Sum,Num}=maps:fold(fun
+    (#metaData{datetime = {Date,{_,_,_}},type=Type},Val,{Acc,Num})
+      when Type==GetType, Date==GetDate->
+        {Val+Acc,Num+1};
+    (_,_,{Acc,Num}) -> {Acc,Num}
+  end,{0,0},Monitor#monitor.values),
+  {ok,Sum / Num}.
 
-getOverLimit(Monitor) ->
-  maps:fold(fun
-    (#metaData{type=Type},Val,Acc)
-      when ((Type==?PM10_NAME) and (Val > ?PM10_NORM)) or ((Type==?PM25_NAME) and (Val > ?PM25_NORM)) ->
+getOverLimit(GetDate,GetHour,Monitor) ->
+  {ok,maps:fold(fun
+    (#metaData{type=Type, datetime={Date,{Hour,_,_}}},Val,Acc)
+      when ((Type==?PM10_NAME) and (Val > ?PM10_NORM)) or ((Type==?PM25_NAME) and (Val > ?PM25_NORM)),
+      Date==GetDate, Hour==GetHour->
         Acc+1;
     (_,_,Acc) -> Acc
-  end,0,Monitor#monitor.values).
+  end,0,Monitor#monitor.values)}.
 
 getStationCords(Cords={CordX,CordY},Monitor)
   when is_number(CordX), is_number(CordY) ->
