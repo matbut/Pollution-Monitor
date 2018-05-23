@@ -23,7 +23,7 @@ qs([Pivot|Tail]) ->
 qs(Element) -> Element.
 
 randomElems(N,Min,Max) ->
-  [rand:uniform(Max-Min)+Min || X <- lists:seq(1,N)].
+  [rand:uniform(Max-Min)+Min || _X <- lists:seq(1,N)].
 
 compareSpeeds(List, Fun1, Fun2) ->
   {Time1,_}=timer:tc(Fun1,[List]),

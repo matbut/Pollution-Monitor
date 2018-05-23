@@ -10,16 +10,23 @@
 -author("mateusz").
 
 %% API
--export([start/0,stop/0,addStation/2,addValue/4,removeValue/3,getOneValue/3,getStationMean/2,getDailyMean/2,getOverLimit/2]).
+-export([start/0,start_link/0,stop/0,crash/0,addStation/2,addValue/4,removeValue/3,getOneValue/3,getStationMean/2,getDailyMean/2,getOverLimit/2]).
 
 -export([init/0]).
 
-start() ->
+start_link() ->
   register (pollution_server, spawn_link(?MODULE, init, [])),
+  ok.
+
+start() ->
+  register (pollution_server, spawn(?MODULE, init, [])),
   ok.
 
 stop() ->
   call(stop,[]).
+
+crash() ->
+  pollution_server ! crash.
 
 addStation(Name,Cords) ->
   call(addStation,[Name,Cords]).
@@ -48,8 +55,8 @@ init() ->
 
 loop(State) ->
   receive
-    {request,Pid,stop,[]} ->
-      Pid ! {reply,terminate()};
+    crash -> 5/0;
+    {request,Pid,stop,[]} -> Pid ! {reply,terminate()};
     {request,Pid,Atom,Args} when is_atom(Atom)-> react(Pid,Atom,Args,State)
   end.
 
@@ -71,9 +78,6 @@ react(Pid,Atom,Args,State) ->
       loop(State)
   end.
 
-
-
-
 call(Request, Args) ->
   pollution_server ! {request,self(),Request, Args},
   receive
@@ -82,3 +86,5 @@ call(Request, Args) ->
 
 terminate() ->
   ok.
+
+

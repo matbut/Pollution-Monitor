@@ -11,10 +11,6 @@
 -compile([export_all, debug_info]).
 -include_lib("eunit/include/eunit.hrl").
 
--define(ADD_STATION_ERROR_MES,"Monitor contains station with same name or same cords").
--define(ADD_VALUE_ERROR_MES,"Monitor contains value with same station id, date and type").
-
-
 addStation_test_() ->
   {setup,
     fun addStationStart/0,
@@ -102,10 +98,10 @@ addGetValues_Correct() ->
 
 addValues_SameKey() ->
   [
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution_server:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",195)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution_server:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",7)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution_server:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",17)),
-    ?_assertEqual({error,?ADD_VALUE_ERROR_MES},pollution_server:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",215))
+    ?_assertMatch({error,_},pollution_server:addValue("Krasickiego",{{1997,11,01},{11,15,27}},"PM10",195)),
+    ?_assertMatch({error,_},pollution_server:addValue({13.23,17.25},{{1997,11,01},{11,15,27}},"PM2.5",7)),
+    ?_assertMatch({error,_},pollution_server:addValue("Bulwarowa",{{1997,11,01},{11,15,27}},"PM10",17)),
+    ?_assertMatch({error,_},pollution_server:addValue({120,150},{{1997,11,01},{12,15,27}},"PM2.5",215))
   ].
 
 addValues_IncorrectStation() ->
