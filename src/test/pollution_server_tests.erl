@@ -18,7 +18,7 @@ addStation_test_() ->
     fun (_) ->
       [addStation_SameCords(),
         addStation_SameName(),
-        addStations_IncorrectName(),
+        %addStations_IncorrectName(),
         addStations_IncorrectCords()
      ]
     end}.

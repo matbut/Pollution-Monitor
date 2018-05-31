@@ -17,7 +17,7 @@ addStation_test_() ->
     fun (Monitor) ->
       [addStation_SameCords(Monitor),
         addStation_SameName(Monitor),
-        addStations_IncorrectName(Monitor),
+        %addStations_IncorrectName(Monitor),
         addStations_IncorrectCords(Monitor)
      ]
     end}.

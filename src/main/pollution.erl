@@ -39,8 +39,10 @@
 createMonitor() ->
   {ok,#monitor{}}.
 
-addStation(NewName=[Char | _],NewCords={NewCord_x,NewCord_y},Monitor)
-  when is_number(NewCord_x), is_number(NewCord_y), 32=<Char, Char=<126 ->
+addStation(NewName,NewCords={NewCord_x,NewCord_y},Monitor)
+  when is_number(NewCord_x), is_number(NewCord_y)
+  %, 32=<Char, Char=<126
+  ->
 
   case containsVal(NewCords,Monitor#monitor.stations) or maps:is_key(NewName,Monitor#monitor.stations) of
     false -> {ok,Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}};
@@ -51,12 +53,13 @@ addStation(NewName=[Char | _],NewCords={NewCord_x,NewCord_y},Monitor)
   %false = maps:is_key(NewName,Monitor#monitor.stations),
   %Monitor#monitor{stations = (Monitor#monitor.stations)#{NewName => NewCords}}.
 
-addStation(_,_,_) -> {error,"Illegal name or cords format"}.
+addStation(_,_,_) -> {error,"Illegal cords format"}.
 
 
 addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
   when 0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<59,0=<Second, Second=<59,
-  is_list(Type) , is_number(Val)->
+  is_number(Val) %,is_list(Type) ,
+  ->
 
   case getStationCords(Id,Monitor) of
     {ok,Cords} ->
@@ -73,7 +76,7 @@ addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
   %false = maps:is_key(InsertedKey,Monitor#monitor.values),
   %Monitor#monitor{values = (Monitor#monitor.values)#{InsertedKey => Val}}.
 
-addValue(_,_,_,_,_) -> {error,"Illegal datetime or type or value format"}.
+addValue(_,_,_,_,_) -> {error,"Illegal datetime or value format"}.
 
 removeValue(Id,Datetime,Type,Monitor) ->
   case getStationCords(Id,Monitor) of
