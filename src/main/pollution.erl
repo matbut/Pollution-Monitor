@@ -57,7 +57,8 @@ addStation(_,_,_) -> {error,"Illegal cords format"}.
 
 
 addValue(Id,Datetime={{Year,Month,Day},{Hour,Minute,Second}},Type,Val,Monitor)
-  when 0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<59,0=<Second, Second=<59,
+  when
+  0=<Year, 1=<Month, Month=<12, 1=<Day, Day=<31, 0=<Hour, Hour=<23, 0=<Minute, Minute=<60,0=<Second, Second=<59,
   is_number(Val) %,is_list(Type) ,
   ->
 
