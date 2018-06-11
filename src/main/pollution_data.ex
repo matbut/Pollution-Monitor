@@ -18,7 +18,7 @@ defmodule PollutionData do
     time1 = measureTime(PollutionData,:loadStations,[stations])
     time2 = measureTime(PollutionData,:loadValues,[pollution_data])
 
-    :pollution_gen_server.stop()
+    #:pollution_gen_server.stop()
     {time1,time2}
   end
 
@@ -53,7 +53,7 @@ defmodule PollutionData do
     |> Enum.map(fn record ->
       #{record,:pollution_gen_server.addValue(record.location,record.datetime,"PM10",record.pollutionLevel)} end)
       #|> Enum.reduce_while(:ok,fn {record,ret},acc -> if ret==:ok do {:cont, acc} else {:halt,{:error,{"load values error",ret,record}}} end end)
-      :pollution_gen_server.addValue(record.location,record.datetime,"PM10",record.pollutionLevel) end)
+      :pollution_gen_server.addValue(record.location,record.datetime,'PM10',record.pollutionLevel) end)
     |> Enum.reduce({{:inserted,0},{:all,0}},fn ret,{{:inserted,i},{:all,a}} -> if ret==:ok do {{:inserted,i+1},{:all,a+1}} else {{:inserted,i},{:all,a+1}} end end)
   end
 

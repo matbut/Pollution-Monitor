@@ -10,7 +10,8 @@ defmodule PollutionDataStream do
 
     time1 = PollutionData.measureTime(PollutionDataStream,:loadStations,[stationsStream])
     time2 = PollutionData.measureTime(PollutionDataStream,:loadValues,[pollutionDataStream])
-    :pollution_gen_server.stop()
+
+    #:pollution_gen_server.stop()
     {time1,time2}
 
   end
@@ -29,7 +30,7 @@ defmodule PollutionDataStream do
   def loadValues(pollutionDataStram) do
     pollutionDataStram
     |> Stream.map(fn record ->
-    :pollution_gen_server.addValue(record.location,record.datetime,"PM10",record.pollutionLevel) end)
+    :pollution_gen_server.addValue(record.location,record.datetime,'PM10',record.pollutionLevel) end)
     |> Enum.reduce({{:inserted,0},{:all,0}},fn ret,{{:inserted,i},{:all,a}} -> if ret==:ok do {{:inserted,i+1},{:all,a+1}} else {{:inserted,i},{:all,a+1}} end end)
   end
 
